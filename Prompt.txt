@@ -1,0 +1,198 @@
+# **Enhancement Scenario: Log Viewer Enhancement**
+
+## **Context**
+
+You are inheriting a primitive internal tool `log_viewer_original.py`:
+
+```python
+def search_logs(path, keyword):
+    # returns a list of matching raw lines
+```
+
+It works, but is unstructured, hard to read, and not extensible.
+
+Your task is to **enhance** it without changing its matching semantics.
+
+---
+
+## **1. Enhancement Goals**
+
+You must improve:
+
+1. **Output clarity** (structured, readable)
+2. **Extensibility** (modular architecture, pluggable formats)
+3. **Observability** (summary metadata)
+4. **Testability** (automated, reusable acceptance tests)
+
+This is an enhancement task, not a rewrite:
+**the set of matched lines must remain identical to the original tool.**
+
+---
+
+## **2. Functional Requirements**
+
+### **A. Structured Results**
+
+Each matched result must include:
+
+* Line number (1-based)
+* Raw matched line
+* Highlighted keyword
+* Configurable context lines (before / after)
+
+### **B. Summary Section**
+
+At minimum:
+
+* `matches`
+* `total_lines`
+* `earliest_timestamp` / `latest_timestamp` (if parseable, else `None`)
+
+### **C. Output Formats**
+
+Provide formatters for:
+
+* Structured plain text
+* JSON (machine-readable)
+* Pretty console output (ANSI coloring allowed)
+
+### **D. Modular Architecture**
+
+Code must be split by responsibility, e.g.:
+
+```
+log_viewer/
+    reader.py
+    searcher.py
+    formatters/
+        text.py
+        json_fmt.py
+        pretty.py
+```
+
+Exact names flexible, responsibilities must be separated.
+
+---
+
+## **3. Required Programmatic API (for Testing)**
+
+Enhanced implementation **must expose**:
+
+```python
+log_viewer.searcher.search(
+    path: str,
+    keyword: str,
+    context: int = 0
+) -> dict
+```
+
+Return shape:
+
+```python
+{
+  "results": [
+    {
+      "line_number": int,
+      "line": str,
+      "highlighted": str,
+      "context_before": list[str],
+      "context_after": list[str],
+      "timestamp": str | None
+    }
+  ],
+  "summary": {
+    "matches": int,
+    "total_lines": int,
+    "earliest_timestamp": str | None,
+    "latest_timestamp": str | None
+  }
+}
+```
+
+Formatters must be pure functions:
+
+```python
+format(report: dict) -> str
+```
+
+---
+
+## **4. Demonstration Requirements**
+
+Provide:
+
+1. `examples/sample.log` (deterministic)
+2. Output from original tool
+3. Output from enhanced tool (text + JSON)
+4. Short explanation of improvements
+
+---
+
+## **5. Automated Acceptance Tests (Mandatory)**
+
+All validation must be automated under `tests/`.
+
+### **A. Architecture Tests**
+
+* Enhanced code is modular (multiple files)
+* Formatters live under `log_viewer/formatters/`
+* Core logic is not implemented in a single file
+
+### **B. Semantic Equivalence Tests**
+
+* Import original `search_logs`
+* Run both tools on the same sample log
+* Assert:
+
+  * `enhanced.summary["matches"] == len(original_results)`
+  * Enhanced matched lines correspond **exactly** to the same raw lines
+  * Order is preserved
+
+### **C. Text Output Tests**
+
+* Output contains section headers
+* Line numbers are shown
+* Keyword is highlighted
+* Context lines appear when `context > 0`
+
+### **D. JSON Output Tests**
+
+* Output parses with `json.loads`
+* Contains `results` and `summary`
+* All required fields are present
+
+### **E. Summary Correctness Tests**
+
+* `total_lines` equals actual file line count
+* `matches == len(results)`
+* Timestamps are valid or `None`
+* If timestamps exist: `earliest <= latest`
+
+---
+
+## **6. One-Click Test Runner**
+
+Provide `run_tests.py` at repo root:
+
+* Discovers and runs all tests
+* Uses pytest if available, else unittest
+* Exits with correct status code
+* No custom “PASS” prints
+
+```bash
+python run_tests.py
+```
+
+---
+
+## **7. Deliverables**
+
+Your answer must include:
+
+1. README (approach, architecture, how to run tests)
+2. Enhanced modular implementation
+3. Before/after output examples
+4. Complete `tests/` directory
+5. `run_tests.py`
+6. **Actual console output of running `python run_tests.py`**
+
