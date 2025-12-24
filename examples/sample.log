@@ -1,0 +1,31 @@
+2025-12-24T08:15:23 INFO Application started successfully
+2025-12-24T08:15:25 DEBUG Loading configuration from /etc/app/config.yaml
+2025-12-24T08:15:26 INFO Configuration loaded: 2 sections found
+2025-12-24T08:15:27 DEBUG Initializing database connection pool
+2025-12-24T08:15:29 INFO Database connection established
+2025-12-24T08:15:30 ERROR Failed to connect to cache server: Connection timeout
+2025-12-24T08:15:31 WARN Cache disabled, using in-memory storage
+2025-12-24T08:16:00 INFO User 'alice' logged in successfully
+2025-12-24T08:16:05 INFO User 'bob' logged in successfully
+2025-12-24T08:16:30 ERROR Database query timed out after 30s
+2025-12-24T08:16:31 INFO Retrying query with extended timeout
+2025-12-24T08:16:35 INFO Database query completed successfully
+2025-12-24T08:17:00 INFO User 'charlie' logged in successfully
+2025-12-24T08:17:15 ERROR Connection refused: Unable to reach upstream service
+2025-12-24T08:17:16 WARN Request failed, returning cached response
+2025-12-24T08:18:00 INFO User 'alice' initiated report generation
+2025-12-24T08:18:15 INFO Report generated successfully: 145 records
+2025-12-24T08:18:30 ERROR Out of memory: Cannot allocate buffer
+2025-12-24T08:18:31 WARN Garbage collection triggered
+2025-12-24T08:18:45 INFO Memory released: 256MB
+2025-12-24T08:19:00 INFO Scheduled backup started
+2025-12-24T08:19:30 ERROR Backup failed: Disk full
+2025-12-24T08:19:31 WARN Attempting cleanup of old logs
+2025-12-24T08:20:00 INFO Cleanup completed: 512MB freed
+2025-12-24T08:20:15 INFO Retrying backup
+2025-12-24T08:20:45 INFO Backup completed successfully
+2025-12-24T08:21:00 INFO User 'bob' logged out
+2025-12-24T08:21:30 ERROR Service health check failed
+2025-12-24T08:21:31 INFO Attempting service restart
+2025-12-24T08:22:00 INFO Service restarted successfully
+2025-12-24T08:22:15 INFO All systems operational
