@@ -1,0 +1,5 @@
+2023-01-01 10:00:00 INFO This is a log with keyword in it.
+2023-01-01 11:00:00 DEBUG Another line without the word.
+2023-01-02 12:00:00 ERROR Found keyword here again.
+2023-01-02 13:00:00 WARN No keyword.
+2023-01-03 14:00:00 INFO keyword at the end.
