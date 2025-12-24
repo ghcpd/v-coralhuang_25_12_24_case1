@@ -1,0 +1,10 @@
+2025-12-24 09:00:00 Starting service
+2025-12-24 09:00:01 INFO Service initialized
+2025-12-24 09:01:02 WARNING Disk space low
+2025-12-24 09:02:03 ERROR Failed to open socket
+2025-12-24 09:02:04 DEBUG Retrying connection
+Some unrelated line without timestamp
+2025-12-24 09:03:05 ERROR Connection timed out
+2025-12-24 09:04:06 INFO Cleanup complete
+2025-12-24 09:05:07 ERROR Failed to open socket -- retry failed
+Final line
