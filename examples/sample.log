@@ -1,0 +1,9 @@
+2025-12-24T08:00:00 Service started
+2025-12-24T08:01:00 INFO User logged in
+2025-12-24T08:02:00 ERROR Failed to open connection
+2025-12-24T08:02:05 DEBUG Retrying connection
+2025-12-24T08:02:10 ERROR Connection timed out
+2025-12-24T08:03:00 INFO Scheduled job run
+Plain line without timestamp but with ERROR inside
+Another plain line
+2025-12-24T08:04:00 WARN Disk usage at 90%
